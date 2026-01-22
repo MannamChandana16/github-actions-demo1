@@ -1,5 +1,5 @@
 print("Hello from GitHub Actions!")
-def add():
+def add(a,b):
     return a+b
 a=int(input("enter"))
 b=int(input("enter"))
