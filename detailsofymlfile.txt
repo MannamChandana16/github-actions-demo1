@@ -1,0 +1,166 @@
+
+## 1️⃣ `name: Simple Python Action`
+
+```yaml
+name: Simple Python Action
+```
+
+* This is the **workflow name**
+* It appears in the **GitHub → Actions tab**
+* You can name it anything (e.g., `Python CI`, `Run Python Script`)
+
+---
+
+## 2️⃣ `on: [push]`
+
+```yaml
+on: [push]
+```
+
+* This tells GitHub **when to run the workflow**
+* Here, it runs **every time you push code** to the repository
+* Example triggers:
+
+  * `push`
+  * `pull_request`
+  * `workflow_dispatch` (manual trigger)
+
+---
+
+## 3️⃣ `jobs:` section
+
+```yaml
+jobs:
+  run-python:
+```
+
+* A **job** is a set of steps executed together
+* `run-python` is the **job name**
+* You can have multiple jobs (build, test, deploy, etc.)
+
+---
+
+## 4️⃣ `runs-on: ubuntu-latest`
+
+```yaml
+runs-on: ubuntu-latest
+```
+
+* Specifies the **virtual machine** where the job runs
+* `ubuntu-latest` = Linux machine provided by GitHub
+* Other options:
+
+  * `windows-latest`
+  * `macos-latest`
+
+---
+
+## 5️⃣ `steps:` section
+
+```yaml
+steps:
+```
+
+* Steps are **executed in order**
+* Each step performs **one action**
+
+---
+
+## 6️⃣ Step 1: Checkout code
+
+```yaml
+- name: Checkout code
+  uses: actions/checkout@v3
+```
+
+📌 **What it does:**
+
+* Downloads your **GitHub repository code** into the runner
+* Without this step, `hello.py` would **not be available**
+
+✔ Mandatory for almost all workflows
+
+---
+
+## 7️⃣ Step 2: Setup Python
+
+```yaml
+- name: Setup Python
+  uses: actions/setup-python@v4
+  with:
+    python-version: '3.10'
+```
+
+📌 **What it does:**
+
+* Installs **Python 3.10** on the runner
+* Sets it as the default Python version
+
+✔ Ensures your code runs with the **correct Python version**
+
+---
+
+## 8️⃣ Step 3: Run Python file
+
+```yaml
+- name: Run Python file
+  run: python hello.py
+```
+
+📌 **What it does:**
+
+* Executes the command:
+
+  ```bash
+  python hello.py
+  ```
+* Runs your Python script inside GitHub’s server
+
+✔ If `hello.py` prints output, it will appear in **Actions logs**
+
+---
+
+## 🔁 Overall Flow (Simple)
+
+```
+Push code to GitHub
+        ↓
+GitHub Actions starts
+        ↓
+Ubuntu VM created
+        ↓
+Code is downloaded
+        ↓
+Python 3.10 installed
+        ↓
+hello.py is executed
+```
+
+---
+
+## ✅ Example `hello.py`
+
+```python
+print("Hello from GitHub Actions!")
+```
+
+**Output in Actions log:**
+
+```
+Hello from GitHub Actions!
+```
+
+---
+
+## 🎯 Why this is useful
+
+* Automates **Python script execution**
+* Used for:
+
+  * Testing
+  * CI pipelines
+  * ML model validation
+  * Automation tasks
+
+---
+
