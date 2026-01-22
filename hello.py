@@ -1,7 +1,5 @@
 print("Hello from GitHub Actions!")
 def add(a,b):
-    return a+b
-a=int(input("enter"))
-b=int(input("enter"))
-c=add(a,b)
-print(c)
+    print(a+b)
+
+add(2,4)
